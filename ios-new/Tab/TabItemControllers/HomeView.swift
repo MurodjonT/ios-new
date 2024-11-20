@@ -7,7 +7,7 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
         case imageSection
         case collectionSection
         case userSpacesSection
-        case prayCheckSection
+//        case prayCheckSection
     }
     
     override init(frame: CGRect, style: UITableView.Style) {
@@ -17,7 +17,7 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
         self.register(HomeTopImageCell.self, forCellReuseIdentifier: HomeTopImageCell.identifier)
         self.register(CollectionSectionCell.self, forCellReuseIdentifier: CollectionSectionCell.identifier)
         self.register(HomeUserSpacesCollectionCell.self, forCellReuseIdentifier: HomeUserSpacesCollectionCell.identifier)
-        self.register(PrayCheckCell.self, forCellReuseIdentifier: PrayCheckCell.identifier)
+//        self.register(PrayCheckCell.self, forCellReuseIdentifier: PrayCheckCell.identifier)
     }
     
     required init?(coder: NSCoder) {
@@ -52,9 +52,9 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
         case .userSpacesCollection:
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeUserSpacesCollectionCell.identifier, for: indexPath) as! HomeUserSpacesCollectionCell
             return cell
-        case .prayCheckCell:
-            let cell = tableView.dequeueReusableCell(withIdentifier: PrayCheckCell.identifier, for: indexPath) as! PrayCheckCell
-            return cell
+//        case .prayCheckCell:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: PrayCheckCell.identifier, for: indexPath) as! PrayCheckCell
+//            return cell
 
         }
     }

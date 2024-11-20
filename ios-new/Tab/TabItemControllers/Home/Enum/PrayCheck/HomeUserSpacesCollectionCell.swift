@@ -12,12 +12,21 @@ class HomeUserSpacesCollectionCell: UITableViewCell, UICollectionViewDataSource,
         return collectionView
     }()
     
+    private let tableImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: "photo")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "userSpaceCell")
         contentView.addSubview(collectionView)
+        contentView.addSubview(tableImageView)
         setupConstraints()
     }
     
@@ -30,7 +39,14 @@ class HomeUserSpacesCollectionCell: UITableViewCell, UICollectionViewDataSource,
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5),
+            
+            tableImageView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 8),
+            tableImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            tableImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            tableImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            tableImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2),
+            tableImageView.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
     
@@ -52,7 +68,7 @@ class HomeUserSpacesCollectionCell: UITableViewCell, UICollectionViewDataSource,
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         cell.contentView.addSubview(imageView)
-
+    
         let imageNames = ["dots", "tongImage", "quyoshImage", "yourBigImage"]
         if indexPath.row < imageNames.count {
             imageView.image = UIImage(named: imageNames[indexPath.row])
@@ -104,11 +120,11 @@ class HomeUserSpacesCollectionCell: UITableViewCell, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 6
+        return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 6
+        return 8
     }
 }
 
