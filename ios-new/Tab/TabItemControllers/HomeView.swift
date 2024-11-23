@@ -3,21 +3,22 @@ import UIKit
 
 class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
     
-    enum SectionType: Int, CaseIterable {
-        case imageSection
-        case collectionSection
-        case userSpacesSection
-//        case prayCheckSection
-    }
+//    enum SectionType: Int, CaseIterable {
+//        case imageSection
+//        case collectionSection
+//        case userSpacesSection
+//        case userRadioSpaceSection
+//    }
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         self.dataSource = self
         self.delegate = self
         self.register(HomeTopImageCell.self, forCellReuseIdentifier: HomeTopImageCell.identifier)
-        self.register(CollectionSectionCell.self, forCellReuseIdentifier: CollectionSectionCell.identifier)
         self.register(HomeUserSpacesCollectionCell.self, forCellReuseIdentifier: HomeUserSpacesCollectionCell.identifier)
-//        self.register(PrayCheckCell.self, forCellReuseIdentifier: PrayCheckCell.identifier)
+        self.register(CollectionSectionCell.self, forCellReuseIdentifier: CollectionSectionCell.identifier)
+        self.register(HomeRadioCell.self, forCellReuseIdentifier: HomeRadioCell.identifier)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -36,6 +37,7 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 2 {
             return 270
+            
         } else {
             return 250
         }
@@ -56,10 +58,9 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
         case .userSpacesCollection:
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeUserSpacesCollectionCell.identifier, for: indexPath) as! HomeUserSpacesCollectionCell
             return cell
-//        case .prayCheckCell:
-//            let cell = tableView.dequeueReusableCell(withIdentifier: PrayCheckCell.identifier, for: indexPath) as! PrayCheckCell
-//            return cell
-
+        case .userRadioSpaceCollection:
+            let cell = tableView.dequeueReusableCell(withIdentifier: HomeRadioCell.identifier, for: indexPath) as! HomeRadioCell
+            return cell
         }
     }
 }

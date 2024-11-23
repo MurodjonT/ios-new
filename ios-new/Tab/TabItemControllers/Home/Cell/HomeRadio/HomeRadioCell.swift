@@ -1,7 +1,7 @@
 import UIKit
 
-class HomeUserSpacesCollectionCell: UITableViewCell {
-    static let identifier = "HomeUserSpacesCollectionCell"
+class HomeRadioCell: UITableViewCell {
+    static let identifier = "HomeRadioCell"
     
     private var collectionView: UICollectionView!
     private let tableImageView = UIImageView()
@@ -28,13 +28,13 @@ class HomeUserSpacesCollectionCell: UITableViewCell {
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UserSpaceCell.self, forCellWithReuseIdentifier: UserSpaceCell.identifier)
+        collectionView.register(UserRadioSpaceCell.self, forCellWithReuseIdentifier: UserRadioSpaceCell.identifier)
         contentView.addSubview(collectionView)
     }
     
     private func configureTableImageView() {
         tableImageView.contentMode = .scaleToFill
-        tableImageView.image = UIImage(named: "tongImage")
+        tableImageView.image = UIImage(named: "yourBigImage")
         tableImageView.clipsToBounds = true
         tableImageView.layer.cornerRadius = 16
         tableImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -44,44 +44,52 @@ class HomeUserSpacesCollectionCell: UITableViewCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
-                       collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-                       collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-                       collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7),
+            tableImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
+            tableImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            tableImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            //tableImageView.bottomAnchor.constraint(equalTo: collectionView.topAnchor, constant: -5),
+            tableImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4),
                        
-                       tableImageView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 8),
-                       tableImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-                       tableImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-                       tableImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-                       tableImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6) // Fixed height for better visibility
+            collectionView.topAnchor.constraint(equalTo: tableImageView.bottomAnchor, constant: 8),
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 15),
+            collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6) // Fixed height for better visibility
         ])
     }
 }
 
-extension HomeUserSpacesCollectionCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension HomeRadioCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserSpaceCell.identifier, for: indexPath) as? UserSpaceCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserRadioSpaceCell.identifier, for: indexPath) as? UserRadioSpaceCell else {
             return UICollectionViewCell()
         }
-        let imageNames = ["dots", "tongImage", "quyoshImage", "yourBigImage"]
+        let imageNames = ["dots", "tongImage", "quyoshImage"]
+
         if indexPath.row < imageNames.count {
-            cell.configure(with: UIImage(named: imageNames[indexPath.row]))
+            
+            if let image = UIImage(systemName: imageNames[indexPath.row]) {
+                cell.configure(with: image)
+            } else if let image = UIImage(named: imageNames[indexPath.row]) {
+                cell.configure(with: image)
+            }
         }
         return cell
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 24) / 4
+        let width = (collectionView.frame.width - 24) / 3
         return CGSize(width: width, height: width)
     }
 }
 
-class UserSpaceCell: UICollectionViewCell {
-    static let identifier = "userSpaceCell"
+class UserRadioSpaceCell: UICollectionViewCell {
+    static let identifier = "userRadioSpaceCell"
     
     private let imageView = UIImageView()
     
@@ -114,14 +122,3 @@ class UserSpaceCell: UICollectionViewCell {
     }
 }
 
-extension UIView {
-    func findViewController() -> UIViewController? {
-        if let nextResponder = self.next as? UIViewController {
-            return nextResponder
-        } else if let nextResponder = self.next as? UIView {
-            return nextResponder.findViewController()
-        } else {
-            return nil
-        }
-    }
-}
