@@ -14,6 +14,7 @@ class HomeTopImageCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.image = UIImage(named: "tongImage")
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .systemGray5
         return imageView
     }()
     

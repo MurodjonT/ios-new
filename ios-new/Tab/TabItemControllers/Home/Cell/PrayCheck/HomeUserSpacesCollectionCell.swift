@@ -8,6 +8,7 @@ class HomeUserSpacesCollectionCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = .systemGray5
         configureCollectionView()
         configureTableImageView()
         setupConstraints()
@@ -25,7 +26,7 @@ class HomeUserSpacesCollectionCell: UITableViewCell {
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .systemGray5
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UserSpaceCell.self, forCellWithReuseIdentifier: UserSpaceCell.identifier)
@@ -38,20 +39,20 @@ class HomeUserSpacesCollectionCell: UITableViewCell {
         tableImageView.clipsToBounds = true
         tableImageView.layer.cornerRadius = 16
         tableImageView.translatesAutoresizingMaskIntoConstraints = false
-        tableImageView.backgroundColor = .lightGray // Added background color for better visibility
+        tableImageView.backgroundColor = .systemGray5 // Added background color for better visibility
         contentView.addSubview(tableImageView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
-                       collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-                       collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
                        collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7),
                        
                        tableImageView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 8),
-                       tableImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-                       tableImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            tableImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            tableImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
                        tableImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
                        tableImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6) // Fixed height for better visibility
         ])

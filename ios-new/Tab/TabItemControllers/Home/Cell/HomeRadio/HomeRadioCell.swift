@@ -11,6 +11,7 @@ class HomeRadioCell: UITableViewCell {
         configureCollectionView()
         configureTableImageView()
         setupConstraints()
+        self.backgroundColor = .systemGray5
     }
     
     required init?(coder: NSCoder) {
@@ -22,12 +23,14 @@ class HomeRadioCell: UITableViewCell {
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 8
         layout.minimumLineSpacing = 8
+        layout.collectionView?.backgroundColor = .systemGray5
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .systemGray5
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.isScrollEnabled = false
         collectionView.register(UserRadioSpaceCell.self, forCellWithReuseIdentifier: UserRadioSpaceCell.identifier)
         contentView.addSubview(collectionView)
     }
@@ -38,25 +41,25 @@ class HomeRadioCell: UITableViewCell {
         tableImageView.clipsToBounds = true
         tableImageView.layer.cornerRadius = 16
         tableImageView.translatesAutoresizingMaskIntoConstraints = false
-        tableImageView.backgroundColor = .lightGray // Added background color for better visibility
+        tableImageView.backgroundColor = .systemGray5 // Added background color for better visibility
         contentView.addSubview(tableImageView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             tableImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
-            tableImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            tableImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            //tableImageView.bottomAnchor.constraint(equalTo: collectionView.topAnchor, constant: -5),
+            tableImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            tableImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             tableImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4),
-                       
+            tableImageView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor),
+
             collectionView.topAnchor.constraint(equalTo: tableImageView.bottomAnchor, constant: 8),
-            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 15),
-            collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6) // Fixed height for better visibility
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor) // constant qiymati olib tashlandi
         ])
     }
+
 }
 
 extension HomeRadioCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -84,8 +87,10 @@ extension HomeRadioCell: UICollectionViewDataSource, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 24) / 3
-        return CGSize(width: width, height: width)
+        let height: CGFloat = 150 // Boyini kengligidan 1.5 barobar katta qildik
+        return CGSize(width: width, height: height)
     }
+
 }
 
 class UserRadioSpaceCell: UICollectionViewCell {
@@ -100,6 +105,7 @@ class UserRadioSpaceCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .systemGray5
         setupConstraints()
     }
     

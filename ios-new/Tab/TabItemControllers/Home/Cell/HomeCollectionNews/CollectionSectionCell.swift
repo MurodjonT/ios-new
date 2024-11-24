@@ -8,7 +8,7 @@ class CollectionSectionCell: UITableViewCell, UICollectionViewDataSource, UIColl
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .systemGray5
         return collectionView
     }()
     
@@ -16,6 +16,7 @@ class CollectionSectionCell: UITableViewCell, UICollectionViewDataSource, UIColl
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
+        self.backgroundColor = .systemGray5
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
         contentView.addSubview(collectionView)
         setupConstraints()
@@ -28,8 +29,8 @@ class CollectionSectionCell: UITableViewCell, UICollectionViewDataSource, UIColl
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }

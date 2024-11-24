@@ -3,13 +3,6 @@ import UIKit
 
 class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
     
-//    enum SectionType: Int, CaseIterable {
-//        case imageSection
-//        case collectionSection
-//        case userSpacesSection
-//        case userRadioSpaceSection
-//    }
-    
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         self.dataSource = self
@@ -18,6 +11,7 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
         self.register(HomeUserSpacesCollectionCell.self, forCellReuseIdentifier: HomeUserSpacesCollectionCell.identifier)
         self.register(CollectionSectionCell.self, forCellReuseIdentifier: CollectionSectionCell.identifier)
         self.register(HomeRadioCell.self, forCellReuseIdentifier: HomeRadioCell.identifier)
+        self.register(VerseOfDayCell.self, forCellReuseIdentifier: VerseOfDayCell.identifier)
         
     }
     
@@ -33,12 +27,15 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 2 {
-            return 270
             
-        } else {
+        switch HomeEnum(rawValue: indexPath.section) {
+        case .userRadioSpaceCollection:
+            return 270
+        case .userSpacesCollection:
+            return 270
+        default:
             return 250
         }
     }
@@ -60,6 +57,10 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
             return cell
         case .userRadioSpaceCollection:
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeRadioCell.identifier, for: indexPath) as! HomeRadioCell
+            return cell
+        case .postsTableViews:
+            let cell = tableView.dequeueReusableCell(withIdentifier: VerseOfDayCell.identifier, for: indexPath) as! VerseOfDayCell
+            cell.configure(with: "Kun oyati Fotiha 7-oyat \(indexPath.row + 1)", descriptionOriginal: "This is the original description for post \(indexPath.row + 1)", descriptionTranslate: "This is the translated description for post \(indexPath.row + 1)")
             return cell
         }
     }
