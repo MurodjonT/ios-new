@@ -1,17 +1,3 @@
-//
-//  HomeQuestionDayCell.swift
-//  ios-new
-//
-//  Created by Murodjon Turobov on 24/11/24.
-//
-
-//
-//  HomeNameOfGod.swift
-//  ios-new
-//
-//  Created by Murodjon Turobov on 24/11/24.
-//
-
 import UIKit
 
 class HomeQuestionDayCell: UITableViewCell {
@@ -113,16 +99,14 @@ class HomeQuestionDayCell: UITableViewCell {
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -7),
             
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
-            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5),
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
             
-            descriptionOriginalLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 3),
-            descriptionOriginalLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-            descriptionOriginalLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+            descriptionOriginalLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 2),
+            descriptionOriginalLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -2),
             
-            descriptionTranslateLabel.topAnchor.constraint(equalTo: descriptionOriginalLabel.bottomAnchor, constant: 4),
+            descriptionTranslateLabel.topAnchor.constraint(equalTo: descriptionOriginalLabel.bottomAnchor, constant: 5),
             descriptionTranslateLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-            descriptionTranslateLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
             
             favoriteButton.topAnchor.constraint(equalTo: descriptionTranslateLabel.bottomAnchor, constant: 15),
             favoriteButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
@@ -180,7 +164,6 @@ class ViewControllerrr: UIViewController, UITableViewDataSource, UITableViewDele
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeQuestionDayCell.identifier, for: indexPath) as? HomeQuestionDayCell else {
             return UITableViewCell()
         }
-        cell.configure(with: "Verse \(indexPath.row + 1)", descriptionOriginal: "Original description", descriptionTranslate: "Translated description")
         return cell
     }
 }

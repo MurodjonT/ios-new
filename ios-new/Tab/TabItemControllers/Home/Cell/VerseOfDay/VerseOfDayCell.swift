@@ -100,19 +100,17 @@ class VerseOfDayCell: UITableViewCell {
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -7),
             
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
             
-            descriptionOriginalLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 3),
-            descriptionOriginalLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-            descriptionOriginalLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+            descriptionOriginalLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 2),
+            descriptionOriginalLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -2),
             
-            descriptionTranslateLabel.topAnchor.constraint(equalTo: descriptionOriginalLabel.bottomAnchor, constant: 4),
+            descriptionTranslateLabel.topAnchor.constraint(equalTo: descriptionOriginalLabel.bottomAnchor, constant: 5),
             descriptionTranslateLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-            descriptionTranslateLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
             
             favoriteButton.topAnchor.constraint(equalTo: descriptionTranslateLabel.bottomAnchor, constant: 15),
             favoriteButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
+            
             
             sendingButton.topAnchor.constraint(equalTo: descriptionTranslateLabel.bottomAnchor, constant: 15),
             sendingButton.leadingAnchor.constraint(equalTo: favoriteButton.trailingAnchor, constant: 15),
@@ -130,7 +128,6 @@ class VerseOfDayCell: UITableViewCell {
     }
 }
 
-// TableView fon rangini o'zgartirish
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -159,14 +156,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10 // Masalan, 10 qator
+        return 10 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: VerseOfDayCell.identifier, for: indexPath) as? VerseOfDayCell else {
             return UITableViewCell()
         }
-        cell.configure(with: "Verse \(indexPath.row + 1)", descriptionOriginal: "Original description", descriptionTranslate: "Translated description")
         return cell
     }
 }

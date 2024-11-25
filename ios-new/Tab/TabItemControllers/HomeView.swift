@@ -65,7 +65,7 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
             return cell
         case .nameOfGodView:
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeNameOfGodCell.identifier, for: indexPath) as! HomeNameOfGodCell
-            cell.configure(with: "Kun duosi \(indexPath.row + 1)", descriptionOriginal: "This is the original description for post \(indexPath.row + 1)", descriptionTranslate: "This is the translated description for post \(indexPath.row + 1)")
+            cell.configure(with: "Asma ul Husna \(indexPath.row + 1)", descriptionOriginal: "This is the original description for post \(indexPath.row + 1)", descriptionTranslate: "This is the translated description for post \(indexPath.row + 1)")
             return cell
         case .questionOfDayView:
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeQuestionDayCell.identifier, for: indexPath) as! HomeQuestionDayCell
