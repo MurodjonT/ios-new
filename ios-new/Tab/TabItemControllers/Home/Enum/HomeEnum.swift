@@ -13,5 +13,7 @@ enum HomeEnum: Int, CaseIterable {
     case collectionNews
     case userSpacesCollection
     case userRadioSpaceCollection
-    case postsTableViews
+    case verseOfDayView
+    case nameOfGodView
+    case questionOfDayView
 }

@@ -1,7 +1,21 @@
+//
+//  HomeQuestionDayCell.swift
+//  ios-new
+//
+//  Created by Murodjon Turobov on 24/11/24.
+//
+
+//
+//  HomeNameOfGod.swift
+//  ios-new
+//
+//  Created by Murodjon Turobov on 24/11/24.
+//
+
 import UIKit
 
-class VerseOfDayCell: UITableViewCell {
-    static let identifier = "VerseOfDayCell"
+class HomeQuestionDayCell: UITableViewCell {
+    static let identifier = "HomeQuestionDayCell"
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -99,9 +113,8 @@ class VerseOfDayCell: UITableViewCell {
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -7),
             
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
+            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5),
             
             descriptionOriginalLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 3),
             descriptionOriginalLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
@@ -113,6 +126,7 @@ class VerseOfDayCell: UITableViewCell {
             
             favoriteButton.topAnchor.constraint(equalTo: descriptionTranslateLabel.bottomAnchor, constant: 15),
             favoriteButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
+            
             
             sendingButton.topAnchor.constraint(equalTo: descriptionTranslateLabel.bottomAnchor, constant: 15),
             sendingButton.leadingAnchor.constraint(equalTo: favoriteButton.trailingAnchor, constant: 15),
@@ -131,12 +145,12 @@ class VerseOfDayCell: UITableViewCell {
 }
 
 // TableView fon rangini o'zgartirish
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewControllerrr: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor.lightGray
-        tableView.register(VerseOfDayCell.self, forCellReuseIdentifier: VerseOfDayCell.identifier)
+        tableView.register(HomeQuestionDayCell.self, forCellReuseIdentifier: HomeQuestionDayCell.identifier)
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -163,7 +177,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: VerseOfDayCell.identifier, for: indexPath) as? VerseOfDayCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeQuestionDayCell.identifier, for: indexPath) as? HomeQuestionDayCell else {
             return UITableViewCell()
         }
         cell.configure(with: "Verse \(indexPath.row + 1)", descriptionOriginal: "Original description", descriptionTranslate: "Translated description")

@@ -12,7 +12,8 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
         self.register(CollectionSectionCell.self, forCellReuseIdentifier: CollectionSectionCell.identifier)
         self.register(HomeRadioCell.self, forCellReuseIdentifier: HomeRadioCell.identifier)
         self.register(VerseOfDayCell.self, forCellReuseIdentifier: VerseOfDayCell.identifier)
-        
+        self.register(HomeNameOfGodCell.self, forCellReuseIdentifier: HomeNameOfGodCell.identifier)
+        self.register(HomeQuestionDayCell.self, forCellReuseIdentifier: HomeQuestionDayCell.identifier)
     }
     
     required init?(coder: NSCoder) {
@@ -58,9 +59,17 @@ class HomeView: UITableView, UITableViewDataSource, UITableViewDelegate {
         case .userRadioSpaceCollection:
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeRadioCell.identifier, for: indexPath) as! HomeRadioCell
             return cell
-        case .postsTableViews:
+        case .verseOfDayView:
             let cell = tableView.dequeueReusableCell(withIdentifier: VerseOfDayCell.identifier, for: indexPath) as! VerseOfDayCell
             cell.configure(with: "Kun oyati Fotiha 7-oyat \(indexPath.row + 1)", descriptionOriginal: "This is the original description for post \(indexPath.row + 1)", descriptionTranslate: "This is the translated description for post \(indexPath.row + 1)")
+            return cell
+        case .nameOfGodView:
+            let cell = tableView.dequeueReusableCell(withIdentifier: HomeNameOfGodCell.identifier, for: indexPath) as! HomeNameOfGodCell
+            cell.configure(with: "Kun duosi \(indexPath.row + 1)", descriptionOriginal: "This is the original description for post \(indexPath.row + 1)", descriptionTranslate: "This is the translated description for post \(indexPath.row + 1)")
+            return cell
+        case .questionOfDayView:
+            let cell = tableView.dequeueReusableCell(withIdentifier: HomeQuestionDayCell.identifier, for: indexPath) as! HomeQuestionDayCell
+            cell.configure(with: "Kun savoli \(indexPath.row + 1)", descriptionOriginal: "This is the original description for post \(indexPath.row + 1)", descriptionTranslate: "This is the translated description for post \(indexPath.row + 1)")
             return cell
         }
     }

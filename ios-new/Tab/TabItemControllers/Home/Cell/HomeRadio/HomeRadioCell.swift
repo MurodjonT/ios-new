@@ -56,7 +56,7 @@ class HomeRadioCell: UITableViewCell {
             collectionView.topAnchor.constraint(equalTo: tableImageView.bottomAnchor, constant: 8),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor) // constant qiymati olib tashlandi
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5) // constant qiymati olib tashlandi
         ])
     }
 
@@ -87,7 +87,7 @@ extension HomeRadioCell: UICollectionViewDataSource, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 24) / 3
-        let height: CGFloat = 150 // Boyini kengligidan 1.5 barobar katta qildik
+        let height: CGFloat = 140 
         return CGSize(width: width, height: height)
     }
 
